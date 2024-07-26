@@ -13,8 +13,9 @@
 5. Фиксы некоторых багов в оригинальной имплементации
 
 ### Датасет с промптами
-1. [General](https://huggingface.co/datasets/Vikhrmodels/ru-arena-general) (Диверсифицированные по 50 топикам вопросы из lmsys) - Именно он используется
-2. [Hard](https://huggingface.co/datasets/Vikhrmodels/ru-arena-hard) (переведенный оригинальный датасет)
+Для этой арены существует 2 датасета, но используется сейчас только первый:
+1. [General](https://huggingface.co/datasets/Vikhrmodels/ru-arena-general) (Диверсифицированные по 50 топикам вопросы из онлайн lmsys арены) - Именно он используется сейчас
+2. [Hard](https://huggingface.co/datasets/Vikhrmodels/ru-arena-hard) (Переведенный оригинальный датасет из английской Arena-Hard)
 
 ## Состояние арены на 26.07.2023
 
@@ -149,7 +150,7 @@ gpt-3.5-turbo-0125:
 You may use inference engine such as [vLLM](https://docs.vllm.ai/en/latest/serving/openai_compatible_server.html) or [SGLang](https://github.com/sgl-project/sglang?tab=readme-ov-file#using-local-models) to host your model with an OpenAI compatible API server.
 
 
-### Шан 2. Генерация ответов модели
+### Шаг 2. Генерация ответов модели
 
 In `config/gen_answer_config.yaml`, add your model name in `model_list`.
 ```yaml
@@ -184,7 +185,7 @@ python gen_judgment.py
 ```
 Judgment caching is also implemented. It will skip generating judgments that has already been generated or lacks one of the model answers.  
 
-### Шан 4. Отображение результата
+### Шаг 4. Отображение результата
 Output model win rates.  Optionally, use `--full-stats` for detailed results.
 ```console
 > python show_result.py
