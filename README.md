@@ -13,10 +13,10 @@
 5. Фиксы некоторых багов в оригинальной имплементации
 
 ### Датасет с промптами
-1. [General](https://huggingface.co/datasets/Vikhrmodels/ru-arena-general) (Диверсифицированные по 50 топикам вопросы из lmsys)
+1. [General](https://huggingface.co/datasets/Vikhrmodels/ru-arena-general) (Диверсифицированные по 50 топикам вопросы из lmsys) - Именно он используется
 2. [Hard](https://huggingface.co/datasets/Vikhrmodels/ru-arena-hard) (переведенный оригинальный датасет)
 
-## Состояние на 26.07.2023
+## Состояние арены на 26.07.2023
 
 На текущий момент в рейтинге находятся 39 моделей
 
