@@ -1,0 +1,6 @@
+google-generativeai
+mistralai
+anthropic
+cohere
+yandex_gpt
+gigachat

@@ -1,0 +1,63 @@
+name: judgment config file for Arena Hard
+
+bench_name: arena-hard-v0.1
+
+# Arena Hard default
+judge_model: gpt-4-1106-preview
+reference: False # Optional
+ref_model: null  
+
+baseline: True
+baseline_model: gpt-3.5-turbo-0125
+
+pairwise: True
+temperature: 0
+max_tokens: 4096
+
+regex_pattern: \[\[([AB<>=]+)\]\]
+
+system_prompt: "Please act as an impartial judge and evaluate the quality of the responses provided by two AI assistants to the user prompt displayed below. You will be given assistant A's answer and assistant B's answer. Your job is to evaluate which assistant's answer is better.\n\nBegin your evaluation by describing the details that need to be taken into account when responding to this prompt. You must provide your ideas before judging any answers.\n\nWhen evaluating the assistants' answers, compare both assistants' answers with your ideas. You must identify and correct any mistakes or inaccurate information.\n\nThen consider if the assistant's answers are helpful, relevant, concise and linguistically acceptable. Helpful means the answer correctly responds to the prompt or follows the instructions. Note when user prompt has any ambiguity or more than one interpretation, it is more helpful and appropriate to ask for clarifications or more information from the user than providing an answer based on assumptions. Relevant means all parts of the response closely connect or are appropriate to what is being asked. Concise means the response is clear and not verbose or excessive. Linguistically acceptable means that the response is given mainly in Russian language and there are no grammatical errors in it.\n\nThen consider the creativity and novelty of the assistant's answers when needed. Finally, identify any missing important information in the assistants' answers that would be beneficial to include when responding to the user prompt.\n\nAfter providing your explanation, you must output only one of the following choices as your final verdict with a label:\n\n1. Assistant A is significantly better: [[A>>B]]\n2. Assistant A is slightly better: [[A>B]]\n3. Tie, relatively the same: [[A=B]]\n4. Assistant B is slightly better: [[B>A]]\n5. Assistant B is significantly better: [[B>>A]]\n\nExample output: \"My final verdict is tie: [[A=B]]\"."
+
+prompt_template: ["<|User Prompt|>\n{question_1}\n\n<|The Start of Assistant A's Answer|>\n{answer_1}\n<|The End of Assistant A's Answer|>\n\n<|The Start of Assistant B's Answer|>\n{answer_2}\n<|The End of Assistant B's Answer|>"]
+
+# Add your model below for evaluation
+model_list:
+  - meta-llama-3-8b-instruct
+  - suzume-llama-3-8b-multilingual
+  - yandex_gpt_pro
+  - starling-lm-7b-beta
+  - openchat-3.5-0106
+  - c4ai-command-r-v01
+  - snorkel-mistral-pairrm-dpo
+  - neural-chat-7b-v3-3
+  - gigachat_lite
+  - gigachat_pro
+  - hermes-2-pro-llama-3-8b
+  - gpt-4-1106-preview
+  - vikhr-it-5.2-fp16-cp
+  - sfr-iterative-dpo-llama-3-8b-r
+  - aya-23-8b
+  - kolibri-vikhr-mistral-0427
+  - phi-3-medium-4k-instruct
+  - openchat-3.6-8b-20240522
+  - llama-3-instruct-8b-simpo
+  - vikhr-it-5.3-fp16
+  - qwen2-7b-instruct
+  - mistral-7b-instruct-v0.3
+  - vikhr-it-5.3-fp16-32k
+  - paralex-llama-3-8b-sft
+  - storm-7b
+  - llama-3-instruct-8b-sppo-iter3
+  - suzume-llama-3-8B-multilingual-orpo-borda-half
+  - saiga_llama3_8b_v6
+  - llama-3-smaug-8b
+  - hermes-2-theta-llama-3-8b
+  - gemma-2-9b-it
+  - llama-3-8b-saiga-suzume-ties
+  - gemma-2-9b-it-sppo-iter3
+  - vikhr-it-5.4-fp16-orpo-v2
+  - t-lite-instruct-0.1
+  - mistral-nemo-instruct-2407
+  - gpt-4o-mini
+  - gpt-3.5-turbo-1106
+  - glm-4-9b-chat
