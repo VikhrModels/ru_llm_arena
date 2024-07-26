@@ -17,7 +17,7 @@
 1. [General](https://huggingface.co/datasets/Vikhrmodels/ru-arena-general) (Диверсифицированные по 50 топикам вопросы из онлайн lmsys арены) - Именно он используется сейчас
 2. [Hard](https://huggingface.co/datasets/Vikhrmodels/ru-arena-hard) (Переведенный оригинальный датасет из английской Arena-Hard)
 
-## Состояние арены на 26.07.2023
+## Состояние арены на 26.07.2024
 
 На текущий момент в рейтинге находятся 39 моделей
 
