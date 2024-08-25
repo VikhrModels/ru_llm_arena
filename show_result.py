@@ -1,8 +1,9 @@
+#!/usr/bin/env python3
+
 import pandas as pd
 import numpy as np
 import plotly.express as px
 
-import tiktoken
 import datetime
 import argparse
 import os
@@ -10,7 +11,7 @@ import os
 from glob import glob
 from tqdm import tqdm
 
-from sklearn.linear_model import LogisticRegression
+from evalica import bradley_terry, Winner
 from scipy.special import expit
 from collections import defaultdict
 from utils import load_questions, load_model_answers
@@ -27,29 +28,25 @@ def compute_mle_elo(df, SCALE=400, BASE=10, INIT_RATING=1000):
     p = len(models.index)
     n = df.shape[0]
 
-    X = np.zeros([n, p])
-    X[np.arange(n), models[df["model_a"]]] = +math.log(BASE)
-    X[np.arange(n), models[df["model_b"]]] = -math.log(BASE)
+    df['winner'] = df['winner'].map({
+        'model_a': Winner.X,
+        'model_b': Winner.Y,
+        'tie': Winner.Draw,
+        'tie (bothbad)': Winner.Draw,
+    })
 
-    # one A win => two A win
-    Y = np.zeros(n)
-    Y[df["winner"] == "model_a"] = 1.0
+    result = bradley_terry(
+        df['model_a'],
+        df['model_b'],
+        df['winner'],
+    )
 
-    # one tie => one A win + one B win
-    # find tie + tie (both bad) index
-    tie_idx = (df["winner"] == "tie") | (df["winner"] == "tie (bothbad)")
-    tie_idx[len(tie_idx) // 2:] = False
-    Y[tie_idx] = 1.0
+    scores = initial + result.scores * scale
 
-    lr = LogisticRegression(fit_intercept=False, penalty=None, tol=1e-8)
-    lr.fit(X, Y, sample_weight=(df['answer_len_delta'] * 2))
+    if BASELINE_MODEL_NAME in scores.index:
+        scores += initial - result.scores[BASELINE_MODEL_NAME]
 
-    elo_scores = SCALE * lr.coef_[0] + INIT_RATING
-
-    # set anchor as BASELINE = INIT_RATING
-    if BASELINE_MODEL_NAME in models.index:
-        elo_scores += INIT_RATING - elo_scores[models[BASELINE_MODEL_NAME]]
-    return pd.Series(elo_scores, index=models.index).sort_values(ascending=False)
+    return scores
 
 
 def get_bootstrap_result(battles, func_compute_elo, num_round):
