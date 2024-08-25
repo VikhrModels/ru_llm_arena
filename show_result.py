@@ -6,21 +6,16 @@ import tiktoken
 import datetime
 import argparse
 import os
-import math
 
 from glob import glob
 from tqdm import tqdm
 
 from sklearn.linear_model import LogisticRegression
+from scipy.special import expit
 from collections import defaultdict
 from utils import load_questions, load_model_answers
 
 BASELINE_MODEL_NAME = "gpt-3.5-turbo-0125"
-
-
-def _logistic(x):
-    """Logistic function."""
-    return np.exp(-np.logaddexp(0, -x))
 
 
 def compute_mle_elo(df, SCALE=400, BASE=10, INIT_RATING=1000):
@@ -136,7 +131,7 @@ def get_battles_from_judgment(judge_name, answers_lengths, first_game_only=False
                 answers_length_deltas = (answers_lengths.loc[BASELINE_MODEL_NAME] - answers_lengths.loc[row["model"]])
                 answer_length_delta = (answers_lengths.loc[BASELINE_MODEL_NAME][row["question_id"]] -
                                        answers_lengths.loc[row["model"]][row["question_id"]])
-                normalized_answer_delta_weight = _logistic(answer_length_delta / answers_length_deltas.std())
+                normalized_answer_delta_weight = expit(answer_length_delta / answers_length_deltas.std())
             else:
                 normalized_answer_delta_weight = 0.5
 
