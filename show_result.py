@@ -19,14 +19,8 @@ from utils import load_questions, load_model_answers
 BASELINE_MODEL_NAME = "gpt-3.5-turbo-0125"
 
 
-def compute_mle_elo(df, SCALE=400, BASE=10, INIT_RATING=1000):
-    models = pd.concat([df["model_a"], df["model_b"]]).unique()
-    models = pd.Series(np.arange(len(models)), index=models)
-
-    # duplicate battles
-    df = pd.concat([df, df], ignore_index=True)
-    p = len(models.index)
-    n = df.shape[0]
+def compute_mle_elo(df: pd.DataFrame, initial: float = 1000., scale: float = 400.) -> 'pd.Series[str]':
+    df = df.copy()
 
     df['winner'] = df['winner'].map({
         'model_a': Winner.X,
