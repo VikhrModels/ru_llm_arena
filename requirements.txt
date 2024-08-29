@@ -1,6 +1,7 @@
 tiktoken
 openai
 numpy
+scipy
 pandas
 shortuuid
 tqdm
