@@ -1,25 +1,23 @@
 #!/usr/bin/env python3
-
-import pandas as pd
-import numpy as np
-import plotly.express as px
-
-import datetime
 import argparse
+import datetime
 import os
-
 from glob import glob
+
+import numpy as np
+import pandas as pd
+import plotly.express as px
+from evalica import bradley_terry, Winner, pairwise_frame
+from scipy.special import expit
 from tqdm import tqdm
 
-from evalica import bradley_terry, Winner
-from scipy.special import expit
-from collections import defaultdict
 from utils import load_questions, load_model_answers
 
 BASELINE_MODEL_NAME = "gpt-3.5-turbo-0125"
 
 
-def compute_mle_elo(df: pd.DataFrame, initial: float = 1000., scale: float = 400.) -> 'pd.Series[str]':
+def compute_ratings(df: pd.DataFrame, initial: float = 1000., base: float = 10.,
+                    scale: float = 400.) -> 'pd.Series[str]':
     df = df.copy()
 
     df['winner'] = df['winner'].map({
@@ -33,25 +31,27 @@ def compute_mle_elo(df: pd.DataFrame, initial: float = 1000., scale: float = 400
         df['model_a'],
         df['model_b'],
         df['winner'],
+        weights=df['answer_len_delta'] * 2,
+        tolerance=1e-8
     )
 
-    scores = initial + result.scores * scale
+    scores = initial + np.log(result.scores) / np.log(base) * scale
 
     if BASELINE_MODEL_NAME in scores.index:
-        scores += initial - result.scores[BASELINE_MODEL_NAME]
+        scores += initial - scores[BASELINE_MODEL_NAME]
 
-    return scores
+    return scores.sort_values(ascending=False, kind="stable")
 
 
-def get_bootstrap_result(battles, func_compute_elo, num_round):
+def get_bootstrap_result(battles, func_compute_ratings, num_round):
     rows = []
     for i in tqdm(range(num_round), desc="bootstrap"):
-        rows.append(func_compute_elo(battles.sample(frac=1.0, replace=True)))
+        rows.append(func_compute_ratings(battles.sample(frac=1.0, replace=True, random_state=i)))
     df = pd.DataFrame(rows)
     return df[df.median().sort_values(ascending=False).index]
 
 
-def preety_print_two_ratings(ratings_1, ratings_2, column_names):
+def pretty_print_two_ratings(ratings_1, ratings_2, column_names):
     df = pd.DataFrame([
         [n, ratings_1[n], ratings_2[n]] for n in ratings_1.keys()
     ], columns=["Model", column_names[0], column_names[1]]).sort_values(column_names[0], ascending=False).reset_index(
@@ -79,26 +79,17 @@ def visualize_bootstrap_scores(df, title):
     return fig
 
 
-def predict_win_rate(elo_ratings, SCALE=400, BASE=10, INIT_RATING=1000):
-    names = sorted(list(elo_ratings.keys()))
-    wins = defaultdict(lambda: defaultdict(lambda: 0))
-    for a in names:
-        for b in names:
-            prediction = (elo_ratings[b] - elo_ratings[a]) / SCALE
-            ea = 1 / (1 + BASE ** prediction)  # logistic function with custom base
-            wins[a][b] = ea
-            wins[b][a] = 1 - ea
+def predict_win_rate(ratings: dict[str, float], scale: float = 400., base: float = 10.) -> pd.DataFrame:
+    scores = pd.Series(ratings).sort_index()
+    scores /= scale
+    scores = base ** scores
 
-    data = {
-        a: [wins[a][b] if a != b else np.nan for b in names]
-        for a in names
-    }
+    df = pairwise_frame(scores)
+    df.index.name = "model_b"
+    df.columns = df.index.copy(name="model_a")
+    np.fill_diagonal(df.values, np.nan)
 
-    df = pd.DataFrame(data, index=names)
-    df.index.name = "model_a"
-    df.columns.name = "model_b"
-
-    return df.T
+    return df
 
 
 def get_win_rate_column(df, column, baseline=BASELINE_MODEL_NAME):
@@ -239,32 +230,32 @@ if __name__ == "__main__":
         battles = get_battles_from_judgment(args.judge_name, models_answers_lengths, args.first_game_only, args.weight,
                                             args.length_control)
 
-    bootstrap_online_elo = compute_mle_elo(battles)
-    models_names = bootstrap_online_elo.index
+    bootstrap_ratings = compute_ratings(battles)
+
+    models_names = bootstrap_ratings.index
 
     if args.load_bootstrap:
-        bootstrap_elo_lu = pd.read_json("data/bootstrapping_results.jsonl", lines=True)
+        bootstrap_ratings_lu = pd.read_json("data/bootstrapping_results.jsonl", lines=True)
     else:
-        np.random.seed(42)
-        bootstrap_elo_lu = get_bootstrap_result(battles, compute_mle_elo, args.num_rounds)
-        bootstrap_elo_lu.to_json("data/bootstrapping_results.jsonl", lines=True, orient="records")
+        bootstrap_ratings_lu = get_bootstrap_result(battles, compute_ratings, args.num_rounds)
+        bootstrap_ratings_lu.to_json("data/bootstrapping_results.jsonl", lines=True, orient="records")
 
     stats = pd.DataFrame()
     stats["results"] = None
     stats["results"] = stats['results'].astype('object')
 
-    for i, model in enumerate(bootstrap_online_elo.index):
-        assert model in bootstrap_elo_lu.columns
+    for i, model in enumerate(models_names):
+        assert model in bootstrap_ratings_lu.columns
 
         stats.at[i, "model"] = model
-        stats.at[i, "score"] = bootstrap_online_elo[model]
-        stats.at[i, "lower"] = np.percentile(bootstrap_elo_lu[model], 2.5)
-        stats.at[i, "upper"] = np.percentile(bootstrap_elo_lu[model], 97.5)
+        stats.at[i, "score"] = bootstrap_ratings[model]
+        stats.at[i, "lower"] = np.percentile(bootstrap_ratings_lu[model], 2.5)
+        stats.at[i, "upper"] = np.percentile(bootstrap_ratings_lu[model], 97.5)
 
         stats.at[i, "avg_tokens"] = models_answers_lengths.loc[model].mean()
         stats.at[i, "std_tokens"] = models_answers_lengths.loc[model].std()
 
-        stats.at[i, "results"] = bootstrap_elo_lu[model].tolist()
+        stats.at[i, "results"] = bootstrap_ratings_lu[model].tolist()
 
     if not args.show_elo:
         stats.sort_values(by="model", inplace=True)
