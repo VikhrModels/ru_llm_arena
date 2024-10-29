@@ -33,7 +33,7 @@ from utils import (
 
 
 def get_answer(
-    question: dict, model: str, endpoint_info: dict, num_choices: int, max_tokens: int, temperature: float, answer_file: str, api_dict: dict
+    question: dict, model: str, endpoint_info: dict, num_choices: int, max_tokens: int, temperature: float, repetition_penalty: float, answer_file: str, api_dict: dict
 ):
     if question["category"] in temperature_config:
         temperature = temperature_config[question["category"]]
@@ -95,6 +95,7 @@ def get_answer(
                 output = chat_completion_openai(model=endpoint_info["model_name"], 
                                                 messages=conv, 
                                                 temperature=temperature, 
+                                                repetition_penalty=repetition_penalty,
                                                 max_tokens=max_tokens, 
                                                 api_dict=api_dict)
             conv.append({"role": "assistant", "content": output})
@@ -181,6 +182,7 @@ if __name__ == "__main__":
                     settings["num_choices"],
                     max_tokens[index],
                     settings["temperature"],
+                    settings.get("repetition_penalty", 1.1),
                     answer_file,
                     get_endpoint(endpoint_info["endpoints"]),
                 )
