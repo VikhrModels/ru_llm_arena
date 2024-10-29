@@ -25,57 +25,65 @@
 1. [General](https://huggingface.co/datasets/Vikhrmodels/ru-arena-general) (Диверсифицированные по 50 топикам вопросы из онлайн lmsys арены) - Именно он используется сейчас
 2. [Hard](https://huggingface.co/datasets/Vikhrmodels/ru-arena-hard) (Переведенный оригинальный датасет из английской Arena-Hard)
 
-## Состояние арены на 21.09.2024
+## Состояние арены на 27.10.2024
 
-На текущий момент в рейтинге находятся 41 модель \
-`score` - предсказаный винрейт модели относительно бейзлайна
+На текущий момент в рейтинге находятся *43* модели \
+`score` - предсказаный винрейт модели относительно бейзлайна (gpt-3.5-turbo-0125)
 
 ### Без контроля длины
 ```console
 > python show_result.py
-gpt-4-1106-preview                                 | score: 90.9  | 95% CI: (-1.3, 1.0)  | average #tokens: 541
-gpt-4o-mini                                        | score: 83.9  | 95% CI: (-1.8, 1.1)  | average #tokens: 448
-vikhr-nemo-12b-instruct-r-21-09-24                 | score: 79.8  | 95% CI: (-2.2, 1.9)  | average #tokens: 627
-gemma-2-9b-it-sppo-iter3                           | score: 73.6  | 95% CI: (-1.6, 2.2)  | average #tokens: 509
-gemma-2-9b-it                                      | score: 69.2  | 95% CI: (-2.5, 1.9)  | average #tokens: 459
-t-lite-instruct-0.1                                | score: 64.7  | 95% CI: (-2.1, 1.7)  | average #tokens: 810
-vikhr-llama3.1-8b-instruct-r-21-09-24              | score: 63.4  | 95% CI: (-2.1, 2.5)  | average #tokens: 618
-suzume-llama-3-8B-multilingual-orpo-borda-half     | score: 57.1  | 95% CI: (-1.9, 2.2)  | average #tokens: 682
-phi-3-medium-4k-instruct                           | score: 55.1  | 95% CI: (-2.4, 2.3)  | average #tokens: 566
-mistral-nemo-instruct-2407                         | score: 50.5  | 95% CI: (-2.7, 2.6)  | average #tokens: 403
-sfr-iterative-dpo-llama-3-8b-r                     | score: 50.1  | 95% CI: (-2.1, 2.4)  | average #tokens: 516
-gpt-3.5-turbo-0125                                 | score: 50.0  | 95% CI:  (0.0, 0.0)  | average #tokens: 220
-glm-4-9b-chat                                      | score: 49.8  | 95% CI: (-2.0, 1.9)  | average #tokens: 568
-c4ai-command-r-v01                                 | score: 49.0  | 95% CI: (-1.7, 2.2)  | average #tokens: 529
-llama-3-instruct-8b-sppo-iter3                     | score: 47.5  | 95% CI: (-2.2, 2.4)  | average #tokens: 502
-suzume-llama-3-8b-multilingual                     | score: 45.7  | 95% CI: (-2.5, 1.7)  | average #tokens: 641
-yandex_gpt_pro                                     | score: 45.1  | 95% CI: (-2.6, 2.3)  | average #tokens: 345
-hermes-2-theta-llama-3-8b                          | score: 44.1  | 95% CI: (-1.7, 2.1)  | average #tokens: 485
-meta-llama-3.1-8b-instruct                         | score: 43.1  | 95% CI: (-2.8, 2.3)  | average #tokens: 628
-gpt-3.5-turbo-1106                                 | score: 41.5  | 95% CI: (-2.2, 2.1)  | average #tokens: 191
-llama-3-smaug-8b                                   | score: 40.8  | 95% CI: (-2.4, 1.8)  | average #tokens: 524
-llama-3-8b-saiga-suzume-ties                       | score: 39.9  | 95% CI: (-1.8, 1.9)  | average #tokens: 763
-starling-lm-7b-beta                                | score: 39.8  | 95% CI: (-2.7, 2.6)  | average #tokens: 629
-saiga_llama3_8b_v6                                 | score: 39.2  | 95% CI: (-2.1, 2.8)  | average #tokens: 471
-llama-3-instruct-8b-simpo                          | score: 38.0  | 95% CI: (-2.6, 2.1)  | average #tokens: 417
-qwen2-7b-instruct                                  | score: 37.5  | 95% CI: (-2.0, 1.8)  | average #tokens: 340
-aya-23-8b                                          | score: 36.3  | 95% CI: (-1.6, 2.1)  | average #tokens: 554
-meta-llama-3-8b-instruct                           | score: 35.1  | 95% CI: (-1.8, 2.8)  | average #tokens: 450
-openchat-3.5-0106                                  | score: 33.8  | 95% CI: (-1.9, 2.0)  | average #tokens: 492
-meta-llama-3.1-8b-instruct-no-sys                  | score: 33.6  | 95% CI: (-1.5, 2.2)  | average #tokens: 523
-mistral-7b-instruct-v0.3                           | score: 32.9  | 95% CI: (-2.1, 1.9)  | average #tokens: 469
-vikhr-it-5.2-fp16-cp                               | score: 31.7  | 95% CI: (-1.8, 1.7)  | average #tokens: 543
-gigachat_pro                                       | score: 31.4  | 95% CI: (-1.4, 2.1)  | average #tokens: 294
-hermes-2-pro-llama-3-8b                            | score: 30.8  | 95% CI: (-2.3, 1.9)  | average #tokens: 463
-openchat-3.6-8b-20240522                           | score: 30.3  | 95% CI: (-2.0, 1.8)  | average #tokens: 428
-vikhr-it-5.3-fp16-32k                              | score: 27.8  | 95% CI: (-1.8, 1.8)  | average #tokens: 519
-vikhr-it-5.3-fp16                                  | score: 22.7  | 95% CI: (-2.0, 1.6)  | average #tokens: 523
-snorkel-mistral-pairrm-dpo                         | score: 22.4  | 95% CI: (-1.6, 1.5)  | average #tokens: 773
-kolibri-vikhr-mistral-0427                         | score: 22.4  | 95% CI: (-1.6, 1.4)  | average #tokens: 489
-storm-7b                                           | score: 20.6  | 95% CI: (-1.6, 1.8)  | average #tokens: 419
-neural-chat-7b-v3-3                                | score: 19.0  | 95% CI: (-1.9, 1.5)  | average #tokens: 927
-gigachat_lite                                      | score: 17.2  | 95% CI: (-1.6, 1.4)  | average #tokens: 276
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━┳━━━━━━━━━━━━━┳━━━━━━━━━━━━━━┓
+┃ Model                                    ┃ Score ┃      95% CI ┃ Avg. #Tokens ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━╇━━━━━━━━━━━━━╇━━━━━━━━━━━━━━┩
+│ gpt-4-1106-preview                       │  90.9 │ (-1.2, 1.3) │          541 │
+│ gpt-4o-mini                              │  83.9 │ (-1.4, 1.2) │          448 │
+│ vikhr-nemo-12b-instruct-r-21-09-24 (!)   │  79.8 │ (-1.5, 1.9) │          627 │
+│ gemma-2-9b-it-sppo-iter3                 │  73.6 │ (-1.9, 2.2) │          509 │
+│ qwen2.5-14b-instruct                     │  70.5 │ (-2.0, 2.2) │          434 │
+│ gemma-2-9b-it                            │  69.2 │ (-1.6, 2.0) │          459 │
+│ aya-expanse-8b                           │  67.1 │ (-2.2, 2.1) │          698 │
+│ t-lite-instruct-0.1                      │  64.7 │ (-2.0, 1.8) │          810 │
+│ vikhr-llama3.1-8b-instruct-r-21-09-24 (!)│  63.4 │ (-2.0, 1.8) │          618 │
+│ suzume-llama-3-8B-multilingual-orpo-bor… │  57.1 │ (-2.0, 2.6) │          682 │
+│ phi-3-medium-4k-instruct                 │  55.1 │ (-2.7, 2.3) │          566 │
+│ mistral-nemo-instruct-2407               │  50.5 │ (-2.3, 2.2) │          403 │
+│ yandex_gpt_pro_v4_26102024               │  50.5 │ (-2.5, 2.2) │          384 │
+│ sfr-iterative-dpo-llama-3-8b-r           │  50.1 │ (-2.2, 1.7) │          516 │
+│ gpt-3.5-turbo-0125                       │  50.0 │  (0.0, 0.0) │          220 │
+│ glm-4-9b-chat                            │  49.8 │ (-2.1, 2.0) │          568 │
+│ c4ai-command-r-v01                       │  49.0 │ (-2.4, 1.7) │          529 │
+│ llama-3-instruct-8b-sppo-iter3           │  47.5 │ (-2.5, 1.7) │          502 │
+│ suzume-llama-3-8b-multilingual           │  45.7 │ (-2.1, 1.9) │          641 │
+│ hermes-2-theta-llama-3-8b                │  44.1 │ (-1.7, 2.4) │          485 │
+│ meta-llama-3.1-8b-instruct               │  43.1 │ (-2.4, 2.4) │          628 │
+│ yandex_gpt_lite_v4_26102024              │  42.7 │ (-2.1, 2.5) │          328 │
+│ gpt-3.5-turbo-1106                       │  41.5 │ (-1.9, 2.3) │          191 │
+│ llama-3-smaug-8b                         │  40.8 │ (-1.9, 2.1) │          524 │
+│ llama-3-8b-saiga-suzume-ties             │  39.9 │ (-2.1, 1.8) │          763 │
+│ starling-lm-7b-beta                      │  39.8 │ (-2.1, 1.5) │          629 │
+│ saiga_llama3_8b_v6                       │  39.2 │ (-1.8, 2.1) │          471 │
+│ llama-3-instruct-8b-simpo                │  38.0 │ (-2.4, 2.1) │          417 │
+│ qwen2-7b-instruct                        │  37.5 │ (-2.1, 2.4) │          340 │
+│ aya-23-8b                                │  36.3 │ (-2.5, 1.8) │          554 │
+│ meta-llama-3-8b-instruct                 │  35.1 │ (-2.0, 1.9) │          450 │
+│ openchat-3.5-0106                        │  33.8 │ (-2.0, 1.9) │          492 │
+│ meta-llama-3.1-8b-instruct-no-sys        │  33.6 │ (-2.0, 1.9) │          523 │
+│ mistral-7b-instruct-v0.3                 │  32.9 │ (-2.0, 1.9) │          469 │
+│ vikhr-it-5.2-fp16-cp                     │  31.7 │ (-1.8, 1.6) │          543 │
+│ gigachat_pro                             │  31.4 │ (-1.9, 2.3) │          294 │
+│ hermes-2-pro-llama-3-8b                  │  30.8 │ (-1.8, 1.8) │          463 │
+│ openchat-3.6-8b-20240522                 │  30.3 │ (-1.6, 2.0) │          428 │
+│ vikhr-it-5.3-fp16-32k                    │  27.8 │ (-2.0, 2.0) │          519 │
+│ vikhr-it-5.3-fp16                        │  22.7 │ (-1.7, 1.6) │          523 │
+│ snorkel-mistral-pairrm-dpo               │  22.4 │ (-1.4, 1.7) │          773 │
+│ storm-7b                                 │  20.6 │ (-2.0, 1.8) │          419 │
+│ neural-chat-7b-v3-3                      │  19.0 │ (-1.6, 1.9) │          927 │
+│ gigachat_lite                            │  17.2 │ (-1.6, 1.5) │          276 │
+└──────────────────────────────────────────┴───────┴─────────────┴──────────────┘
 ```
+
+(!) - по [сообщениям](https://t.me/senior_augur/307) Ильи Гусева, модель в SFT части содержала часть ответов которые есть в бенчммарке, что могло немного завысить результаты. Подробнее в комментариях к посту.
 
 ### Со штрафом на длину ответа относительно бейзлайна
 Эта функция реализована примерно как в [AlpacaEval 2 LC](https://arxiv.org/abs/2404.04475), но с некоторыми отличиями, которые можно увидеть в коде (например logistic()*2 вместо tanh(), для менее агресивного штрафования) \
@@ -85,48 +93,54 @@ gigachat_lite                                      | score: 17.2  | 95% CI: (-1.
     <summary>Развернуть</summary>
 
     > python show_result.py --length-control
-    gpt-4-1106-preview                                 | score: 81.4  | 95% CI: (-2.4, 2.0)  | average #tokens: 541
-    gpt-4o-mini                                        | score: 75.4  | 95% CI: (-2.2, 1.5)  | average #tokens: 448
-    vikhr-nemo-12b-instruct-r-21-09-24                 | score: 65.5  | 95% CI: (-2.9, 2.5)  | average #tokens: 627
-    gemma-2-9b-it-sppo-iter3                           | score: 56.9  | 95% CI: (-2.1, 2.5)  | average #tokens: 509
-    gemma-2-9b-it                                      | score: 54.3  | 95% CI: (-3.4, 2.7)  | average #tokens: 459
-    gpt-3.5-turbo-0125                                 | score: 50.0  | 95% CI:  (0.0, 0.0)  | average #tokens: 220
-    vikhr-llama3.1-8b-instruct-r-21-09-24              | score: 46.9  | 95% CI: (-2.4, 3.1)  | average #tokens: 618
-    phi-3-medium-4k-instruct                           | score: 45.0  | 95% CI: (-2.2, 2.1)  | average #tokens: 566
-    gpt-3.5-turbo-1106                                 | score: 41.0  | 95% CI: (-2.4, 2.0)  | average #tokens: 191
-    mistral-nemo-instruct-2407                         | score: 40.0  | 95% CI: (-2.4, 2.5)  | average #tokens: 403
-    suzume-llama-3-8b-multilingual                     | score: 40.0  | 95% CI: (-2.5, 1.7)  | average #tokens: 641
-    t-lite-instruct-0.1                                | score: 39.9  | 95% CI: (-2.2, 2.0)  | average #tokens: 810
-    glm-4-9b-chat                                      | score: 36.2  | 95% CI: (-1.9, 2.2)  | average #tokens: 568
-    yandex_gpt_pro                                     | score: 35.3  | 95% CI: (-2.5, 2.1)  | average #tokens: 345
-    hermes-2-theta-llama-3-8b                          | score: 34.1  | 95% CI: (-1.6, 1.5)  | average #tokens: 485
-    suzume-llama-3-8B-multilingual-orpo-borda-half     | score: 33.3  | 95% CI: (-1.6, 2.2)  | average #tokens: 682
-    meta-llama-3.1-8b-instruct                         | score: 33.0  | 95% CI: (-2.5, 1.9)  | average #tokens: 628
-    llama-3-smaug-8b                                   | score: 32.5  | 95% CI: (-2.1, 1.9)  | average #tokens: 524
-    sfr-iterative-dpo-llama-3-8b-r                     | score: 32.4  | 95% CI: (-2.1, 2.4)  | average #tokens: 516
-    llama-3-8b-saiga-suzume-ties                       | score: 32.2  | 95% CI: (-1.7, 2.1)  | average #tokens: 763
-    c4ai-command-r-v01                                 | score: 32.1  | 95% CI: (-2.2, 1.8)  | average #tokens: 529
-    qwen2-7b-instruct                                  | score: 31.0  | 95% CI: (-1.7, 1.8)  | average #tokens: 340
-    llama-3-instruct-8b-sppo-iter3                     | score: 30.7  | 95% CI: (-2.2, 2.3)  | average #tokens: 502
-    saiga_llama3_8b_v6                                 | score: 30.4  | 95% CI: (-1.8, 2.2)  | average #tokens: 471
-    openchat-3.5-0106                                  | score: 30.2  | 95% CI: (-1.8, 1.9)  | average #tokens: 492
-    starling-lm-7b-beta                                | score: 28.4  | 95% CI: (-2.2, 2.4)  | average #tokens: 629
-    mistral-7b-instruct-v0.3                           | score: 27.8  | 95% CI: (-2.0, 1.9)  | average #tokens: 469
-    meta-llama-3.1-8b-instruct-no-sys                  | score: 27.7  | 95% CI: (-1.3, 1.7)  | average #tokens: 523
-    hermes-2-pro-llama-3-8b                            | score: 26.1  | 95% CI: (-1.8, 1.7)  | average #tokens: 463
-    llama-3-instruct-8b-simpo                          | score: 25.2  | 95% CI: (-2.1, 1.8)  | average #tokens: 417
-    gigachat_pro                                       | score: 24.7  | 95% CI: (-1.4, 1.9)  | average #tokens: 294
-    openchat-3.6-8b-20240522                           | score: 24.6  | 95% CI: (-1.8, 1.6)  | average #tokens: 428
-    meta-llama-3-8b-instruct                           | score: 23.8  | 95% CI: (-1.5, 2.1)  | average #tokens: 450
-    aya-23-8b                                          | score: 23.6  | 95% CI: (-1.4, 1.6)  | average #tokens: 554
-    vikhr-it-5.2-fp16-cp                               | score: 23.0  | 95% CI: (-1.5, 1.9)  | average #tokens: 543
-    vikhr-it-5.3-fp16-32k                              | score: 21.3  | 95% CI: (-1.5, 1.7)  | average #tokens: 519
-    snorkel-mistral-pairrm-dpo                         | score: 19.0  | 95% CI: (-1.5, 1.3)  | average #tokens: 773
-    vikhr-it-5.3-fp16                                  | score: 18.2  | 95% CI: (-1.7, 1.5)  | average #tokens: 523
-    kolibri-vikhr-mistral-0427                         | score: 17.8  | 95% CI: (-1.3, 1.0)  | average #tokens: 489
-    neural-chat-7b-v3-3                                | score: 16.8  | 95% CI: (-1.7, 1.4)  | average #tokens: 927
-    gigachat_lite                                      | score: 15.2  | 95% CI: (-1.5, 1.3)  | average #tokens: 276
-    storm-7b                                           | score: 12.8  | 95% CI: (-1.1, 1.2)  | average #tokens: 419
+    ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━┳━━━━━━━━━━━━━┳━━━━━━━━━━━━━━┓
+    ┃ Model                                    ┃ Score ┃      95% CI ┃ Avg. #Tokens ┃
+    ┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━╇━━━━━━━━━━━━━╇━━━━━━━━━━━━━━┩
+    │ gpt-4-1106-preview                       │  81.4 │ (-2.0, 2.5) │          541 │
+    │ gpt-4o-mini                              │  75.4 │ (-1.9, 1.9) │          448 │
+    │ vikhr-nemo-12b-instruct-r-21-09-24       │  65.5 │ (-2.3, 3.0) │          627 │
+    │ qwen2.5-14b-instruct                     │  59.0 │ (-2.2, 2.3) │          434 │
+    │ gemma-2-9b-it-sppo-iter3                 │  56.9 │ (-2.5, 3.2) │          509 │
+    │ gemma-2-9b-it                            │  54.3 │ (-1.9, 2.2) │          459 │
+    │ gpt-3.5-turbo-0125                       │  50.0 │  (0.0, 0.0) │          220 │
+    │ aya-expanse-8b                           │  47.2 │ (-2.5, 2.3) │          698 │
+    │ vikhr-llama3.1-8b-instruct-r-21-09-24    │  46.9 │ (-2.4, 2.2) │          618 │
+    │ phi-3-medium-4k-instruct                 │  45.0 │ (-2.4, 2.5) │          566 │
+    │ gpt-3.5-turbo-1106                       │  41.0 │ (-2.1, 2.5) │          191 │
+    │ mistral-nemo-instruct-2407               │  40.0 │ (-2.6, 2.2) │          403 │
+    │ suzume-llama-3-8b-multilingual           │  40.0 │ (-2.0, 1.9) │          641 │
+    │ t-lite-instruct-0.1                      │  39.9 │ (-2.2, 2.0) │          810 │
+    │ yandex_gpt_pro_v4_26102024               │  38.8 │ (-2.3, 2.2) │          384 │
+    │ glm-4-9b-chat                            │  36.2 │ (-1.9, 1.8) │          568 │
+    │ hermes-2-theta-llama-3-8b                │  34.1 │ (-1.7, 2.5) │          485 │
+    │ suzume-llama-3-8B-multilingual-orpo-bor… │  33.3 │ (-1.8, 2.4) │          682 │
+    │ yandex_gpt_lite_v4_26102024              │  33.2 │ (-2.0, 2.1) │          328 │
+    │ meta-llama-3.1-8b-instruct               │  33.0 │ (-2.0, 2.1) │          628 │
+    │ llama-3-smaug-8b                         │  32.5 │ (-2.1, 2.2) │          524 │
+    │ sfr-iterative-dpo-llama-3-8b-r           │  32.4 │ (-2.1, 2.2) │          516 │
+    │ llama-3-8b-saiga-suzume-ties             │  32.2 │ (-1.9, 1.7) │          763 │
+    │ c4ai-command-r-v01                       │  32.1 │ (-1.9, 1.5) │          529 │
+    │ qwen2-7b-instruct                        │  31.0 │ (-1.9, 2.2) │          340 │
+    │ llama-3-instruct-8b-sppo-iter3           │  30.7 │ (-2.1, 1.8) │          502 │
+    │ saiga_llama3_8b_v6                       │  30.4 │ (-1.7, 1.9) │          471 │
+    │ openchat-3.5-0106                        │  30.2 │ (-1.8, 1.8) │          492 │
+    │ starling-lm-7b-beta                      │  28.4 │ (-1.9, 1.4) │          629 │
+    │ mistral-7b-instruct-v0.3                 │  27.8 │ (-1.9, 1.8) │          469 │
+    │ meta-llama-3.1-8b-instruct-no-sys        │  27.7 │ (-1.9, 1.8) │          523 │
+    │ hermes-2-pro-llama-3-8b                  │  26.1 │ (-1.4, 1.6) │          463 │
+    │ llama-3-instruct-8b-simpo                │  25.2 │ (-2.0, 1.9) │          417 │
+    │ gigachat_pro                             │  24.7 │ (-1.8, 2.0) │          294 │
+    │ openchat-3.6-8b-20240522                 │  24.6 │ (-1.4, 1.8) │          428 │
+    │ meta-llama-3-8b-instruct                 │  23.8 │ (-1.9, 1.7) │          450 │
+    │ aya-23-8b                                │  23.6 │ (-1.5, 1.6) │          554 │
+    │ vikhr-it-5.2-fp16-cp                     │  23.0 │ (-1.5, 1.3) │          543 │
+    │ vikhr-it-5.3-fp16-32k                    │  21.3 │ (-1.9, 1.6) │          519 │
+    │ snorkel-mistral-pairrm-dpo               │  19.0 │ (-1.3, 1.5) │          773 │
+    │ vikhr-it-5.3-fp16                        │  18.2 │ (-1.4, 1.3) │          523 │
+    │ neural-chat-7b-v3-3                      │  16.8 │ (-1.6, 1.7) │          927 │
+    │ gigachat_lite                            │  15.2 │ (-1.5, 1.3) │          276 │
+    │ storm-7b                                 │  12.8 │ (-1.5, 1.4) │          419 │
+    └──────────────────────────────────────────┴───────┴─────────────┴──────────────┘
 </details>
 
 Запуск `show_results.py` сохранит сгенерированные "схватки" в `data/arena_hard_battles.jsonl` и статистику бутстрапов в `data/bootstrapping_results.jsonl`. Если вы не хотите их повторно генерировать, просто переключите аргумент `--load-battles` или `--load-bootstrap` соответственно.

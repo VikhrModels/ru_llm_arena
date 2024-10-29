@@ -13,6 +13,9 @@ from tqdm import tqdm
 
 from utils import load_questions, load_model_answers
 
+from rich.console import Console
+from rich.table import Table
+
 BASELINE_MODEL_NAME = "gpt-3.5-turbo-0125"
 
 
@@ -110,9 +113,10 @@ def get_battles_from_judgment(judge_name, answers_lengths, first_game_only=False
 
         for _, row in df.iterrows():
             if length_controlled:
-                answers_length_deltas = (answers_lengths.loc[BASELINE_MODEL_NAME] - answers_lengths.loc[row["model"]])
+                _model_name = row["model"].split('/')[-1]
+                answers_length_deltas = (answers_lengths.loc[BASELINE_MODEL_NAME] - answers_lengths.loc[_model_name])
                 answer_length_delta = (answers_lengths.loc[BASELINE_MODEL_NAME][row["question_id"]] -
-                                       answers_lengths.loc[row["model"]][row["question_id"]])
+                                       answers_lengths.loc[_model_name][row["question_id"]])
                 normalized_answer_delta_weight = expit(answer_length_delta / answers_length_deltas.std())
             else:
                 normalized_answer_delta_weight = 0.5
@@ -252,8 +256,8 @@ if __name__ == "__main__":
         stats.at[i, "lower"] = np.percentile(bootstrap_ratings_lu[model], 2.5)
         stats.at[i, "upper"] = np.percentile(bootstrap_ratings_lu[model], 97.5)
 
-        stats.at[i, "avg_tokens"] = models_answers_lengths.loc[model].mean()
-        stats.at[i, "std_tokens"] = models_answers_lengths.loc[model].std()
+        stats.at[i, "avg_tokens"] = models_answers_lengths.loc[model.split('/')[-1]].mean()
+        stats.at[i, "std_tokens"] = models_answers_lengths.loc[model.split('/')[-1]].std()
 
         stats.at[i, "results"] = bootstrap_ratings_lu[model].tolist()
 
@@ -268,11 +272,31 @@ if __name__ == "__main__":
         decimal = 0
         stats = stats.astype({"score": int, "lower": int, "upper": int})
 
+    # Initialize Rich Console
+    console = Console()
+    
+    # Create a Rich Table
+    table = Table(show_header=True, header_style="bold magenta", show_lines=False)
+    table.add_column("Model", width=40)
+    table.add_column("Score", justify="right")
+    table.add_column("95% CI", justify="right")
+    table.add_column("Avg. #Tokens", justify="right")
+    
+    # Sort values by 'score' as per your existing code
     stats.sort_values(by="score", ascending=False, inplace=True)
+    
+    # Add rows to the table
     for _, row in stats.iterrows():
-        interval = str((round(row['lower'] - row['score'], decimal), round(row['upper'] - row['score'], decimal)))
-        print(
-            f"{row['model'] : <50} | score: {round(row['score'], decimal) : ^5} | 95% CI: {interval : ^12} | average #tokens: {int(row['avg_tokens'])}")
+        interval = f"({round(row['lower'] - row['score'], decimal)}, {round(row['upper'] - row['score'], decimal)})"
+        table.add_row(
+            row['model'],
+            f"{round(row['score'], decimal)}",
+            interval,
+            f"{int(row['avg_tokens'])}"
+        )
+    
+    # Print the table using Rich
+    console.print(table)
 
     if args.output:
         cur_date = datetime.datetime.now()
