@@ -36,51 +36,53 @@
 ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━┳━━━━━━━━━━━━━┳━━━━━━━━━━━━━━┓
 ┃ Model                                    ┃ Score ┃      95% CI ┃ Avg. #Tokens ┃
 ┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━╇━━━━━━━━━━━━━╇━━━━━━━━━━━━━━┩
-│ gpt-4-1106-preview                       │  90.9 │ (-1.2, 1.3) │          541 │
-│ gpt-4o-mini                              │  83.9 │ (-1.4, 1.2) │          448 │
-│ vikhr-nemo-12b-instruct-r-21-09-24 (!)   │  79.8 │ (-1.5, 1.9) │          627 │
-│ gemma-2-9b-it-sppo-iter3                 │  73.6 │ (-1.9, 2.2) │          509 │
-│ qwen2.5-14b-instruct                     │  70.5 │ (-2.0, 2.2) │          434 │
-│ gemma-2-9b-it                            │  69.2 │ (-1.6, 2.0) │          459 │
-│ aya-expanse-8b                           │  67.1 │ (-2.2, 2.1) │          698 │
-│ t-lite-instruct-0.1                      │  64.7 │ (-2.0, 1.8) │          810 │
-│ vikhr-llama3.1-8b-instruct-r-21-09-24 (!)│  63.4 │ (-2.0, 1.8) │          618 │
-│ suzume-llama-3-8B-multilingual-orpo-bor… │  57.1 │ (-2.0, 2.6) │          682 │
-│ phi-3-medium-4k-instruct                 │  55.1 │ (-2.7, 2.3) │          566 │
-│ mistral-nemo-instruct-2407               │  50.5 │ (-2.3, 2.2) │          403 │
-│ yandex_gpt_pro_v4_26102024               │  50.5 │ (-2.5, 2.2) │          384 │
-│ sfr-iterative-dpo-llama-3-8b-r           │  50.1 │ (-2.2, 1.7) │          516 │
+│ gpt-4-1106-preview                       │  90.9 │ (-1.3, 1.2) │          541 │
+│ gpt-4o-mini                              │  83.9 │ (-1.6, 1.8) │          448 │
+│ gigachat_max_26.20_uncen                 │  82.7 │ (-1.8, 1.6) │          514 │
+│ vikhr-nemo-12b-instruct-r-21-09-24       │  79.8 │ (-1.6, 1.9) │          627 │
+│ gemma-2-9b-it-sppo-iter3                 │  73.6 │ (-1.8, 1.2) │          509 │
+│ qwen2.5-14b-instruct                     │  70.5 │ (-1.9, 1.8) │          434 │
+│ gigachat_pro_26.20_uncen                 │  70.4 │ (-1.5, 2.4) │          549 │
+│ gemma-2-9b-it                            │  69.2 │ (-2.0, 2.0) │          459 │
+│ CohereForAI/aya-expanse-8b               │  67.1 │ (-1.6, 2.2) │          698 │
+│ t-lite-instruct-0.1                      │  64.7 │ (-2.5, 2.0) │          810 │
+│ vikhr-llama3.1-8b-instruct-r-21-09-24    │  63.4 │ (-2.4, 2.3) │          618 │
+│ suzume-llama-3-8B-multilingual-orpo-bor… │  57.1 │ (-2.4, 2.0) │          682 │
+│ gigachat_lite_26.20_uncen                │  56.4 │ (-2.2, 1.9) │          561 │
+│ phi-3-medium-4k-instruct                 │  55.1 │ (-2.0, 1.9) │          566 │
+│ mistral-nemo-instruct-2407               │  50.5 │ (-2.0, 2.5) │          403 │
+│ yandex_gpt_pro_v4_26102024               │  50.5 │ (-2.2, 2.4) │          384 │
+│ sfr-iterative-dpo-llama-3-8b-r           │  50.1 │ (-3.0, 2.3) │          516 │
 │ gpt-3.5-turbo-0125                       │  50.0 │  (0.0, 0.0) │          220 │
-│ glm-4-9b-chat                            │  49.8 │ (-2.1, 2.0) │          568 │
-│ c4ai-command-r-v01                       │  49.0 │ (-2.4, 1.7) │          529 │
-│ llama-3-instruct-8b-sppo-iter3           │  47.5 │ (-2.5, 1.7) │          502 │
-│ suzume-llama-3-8b-multilingual           │  45.7 │ (-2.1, 1.9) │          641 │
-│ hermes-2-theta-llama-3-8b                │  44.1 │ (-1.7, 2.4) │          485 │
-│ meta-llama-3.1-8b-instruct               │  43.1 │ (-2.4, 2.4) │          628 │
-│ yandex_gpt_lite_v4_26102024              │  42.7 │ (-2.1, 2.5) │          328 │
-│ gpt-3.5-turbo-1106                       │  41.5 │ (-1.9, 2.3) │          191 │
-│ llama-3-smaug-8b                         │  40.8 │ (-1.9, 2.1) │          524 │
-│ llama-3-8b-saiga-suzume-ties             │  39.9 │ (-2.1, 1.8) │          763 │
-│ starling-lm-7b-beta                      │  39.8 │ (-2.1, 1.5) │          629 │
-│ saiga_llama3_8b_v6                       │  39.2 │ (-1.8, 2.1) │          471 │
-│ llama-3-instruct-8b-simpo                │  38.0 │ (-2.4, 2.1) │          417 │
-│ qwen2-7b-instruct                        │  37.5 │ (-2.1, 2.4) │          340 │
-│ aya-23-8b                                │  36.3 │ (-2.5, 1.8) │          554 │
-│ meta-llama-3-8b-instruct                 │  35.1 │ (-2.0, 1.9) │          450 │
-│ openchat-3.5-0106                        │  33.8 │ (-2.0, 1.9) │          492 │
-│ meta-llama-3.1-8b-instruct-no-sys        │  33.6 │ (-2.0, 1.9) │          523 │
-│ mistral-7b-instruct-v0.3                 │  32.9 │ (-2.0, 1.9) │          469 │
-│ vikhr-it-5.2-fp16-cp                     │  31.7 │ (-1.8, 1.6) │          543 │
-│ gigachat_pro                             │  31.4 │ (-1.9, 2.3) │          294 │
-│ hermes-2-pro-llama-3-8b                  │  30.8 │ (-1.8, 1.8) │          463 │
-│ openchat-3.6-8b-20240522                 │  30.3 │ (-1.6, 2.0) │          428 │
-│ vikhr-it-5.3-fp16-32k                    │  27.8 │ (-2.0, 2.0) │          519 │
-│ vikhr-it-5.3-fp16                        │  22.7 │ (-1.7, 1.6) │          523 │
-│ snorkel-mistral-pairrm-dpo               │  22.4 │ (-1.4, 1.7) │          773 │
-│ storm-7b                                 │  20.6 │ (-2.0, 1.8) │          419 │
-│ neural-chat-7b-v3-3                      │  19.0 │ (-1.6, 1.9) │          927 │
-│ gigachat_lite                            │  17.2 │ (-1.6, 1.5) │          276 │
-└──────────────────────────────────────────┴───────┴─────────────┴──────────────┘
+│ glm-4-9b-chat                            │  49.8 │ (-2.5, 2.2) │          568 │
+│ c4ai-command-r-v01                       │  49.0 │ (-2.3, 2.1) │          529 │
+│ llama-3-instruct-8b-sppo-iter3           │  47.5 │ (-2.2, 2.2) │          502 │
+│ suzume-llama-3-8b-multilingual           │  45.7 │ (-2.2, 2.0) │          641 │
+│ yandex_gpt_pro                           │  45.1 │ (-2.2, 2.8) │          345 │
+│ hermes-2-theta-llama-3-8b                │  44.1 │ (-2.1, 2.9) │          485 │
+│ yandex_gpt_lite_v4_26102024              │  42.7 │ (-2.1, 2.4) │          328 │
+│ gpt-3.5-turbo-1106                       │  41.5 │ (-2.2, 2.0) │          191 │
+│ llama-3-smaug-8b                         │  40.8 │ (-2.0, 2.0) │          524 │
+│ llama-3-8b-saiga-suzume-ties             │  39.9 │ (-2.1, 2.0) │          763 │
+│ starling-lm-7b-beta                      │  39.8 │ (-1.9, 2.2) │          629 │
+│ vikhr-it-5.4-fp16-orpo-v2                │  39.3 │ (-2.2, 2.0) │          379 │
+│ saiga_llama3_8b_v6                       │  39.2 │ (-1.7, 2.1) │          471 │
+│ llama-3-instruct-8b-simpo                │  38.0 │ (-1.9, 2.4) │          417 │
+│ qwen2-7b-instruct                        │  37.5 │ (-2.0, 2.2) │          340 │
+│ paralex-llama-3-8b-sft                   │  37.4 │ (-2.0, 1.6) │          688 │
+│ aya-23-8b                                │  36.3 │ (-1.8, 1.8) │          554 │
+│ meta-llama-3-8b-instruct                 │  35.1 │ (-2.2, 2.1) │          450 │
+│ openchat-3.5-0106                        │  33.8 │ (-1.8, 2.1) │          492 │
+│ mistral-7b-instruct-v0.3                 │  32.9 │ (-2.0, 2.0) │          469 │
+│ vikhr-it-5.2-fp16-cp                     │  31.7 │ (-1.8, 1.9) │          543 │
+│ hermes-2-pro-llama-3-8b                  │  30.8 │ (-1.8, 2.3) │          463 │
+│ openchat-3.6-8b-20240522                 │  30.3 │ (-2.0, 2.4) │          428 │
+│ vikhr-it-5.3-fp16-32k                    │  27.8 │ (-1.9, 2.1) │          519 │
+│ vikhr-it-5.3-fp16                        │  22.7 │ (-1.2, 1.8) │          523 │
+│ kolibri-vikhr-mistral-0427               │  22.4 │ (-1.4, 2.2) │          489 │
+│ snorkel-mistral-pairrm-dpo               │  22.4 │ (-1.9, 1.6) │          773 │
+│ storm-7b                                 │  20.6 │ (-1.7, 1.8) │          419 │
+│ neural-chat-7b-v3-3                      │  19.0 │ (-1.7, 1.8) │          927 │└──────────────────────────────────────────┴───────┴─────────────┴──────────────┘
 ```
 
 (!) - по [сообщениям](https://t.me/senior_augur/307) Ильи Гусева, модель в SFT части содержала часть ответов которые есть в бенчммарке, что могло немного завысить результаты. Подробнее в комментариях к посту.
@@ -96,50 +98,53 @@
     ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━┳━━━━━━━━━━━━━┳━━━━━━━━━━━━━━┓
     ┃ Model                                    ┃ Score ┃      95% CI ┃ Avg. #Tokens ┃
     ┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━╇━━━━━━━━━━━━━╇━━━━━━━━━━━━━━┩
-    │ gpt-4-1106-preview                       │  81.4 │ (-2.0, 2.5) │          541 │
-    │ gpt-4o-mini                              │  75.4 │ (-1.9, 1.9) │          448 │
-    │ vikhr-nemo-12b-instruct-r-21-09-24       │  65.5 │ (-2.3, 3.0) │          627 │
-    │ qwen2.5-14b-instruct                     │  59.0 │ (-2.2, 2.3) │          434 │
-    │ gemma-2-9b-it-sppo-iter3                 │  56.9 │ (-2.5, 3.2) │          509 │
-    │ gemma-2-9b-it                            │  54.3 │ (-1.9, 2.2) │          459 │
+    │ gpt-4-1106-preview                       │  81.4 │ (-2.3, 2.2) │          541 │
+    │ gpt-4o-mini                              │  75.4 │ (-2.0, 2.4) │          448 │
+    │ gigachat_max_26.20_uncen                 │  72.5 │ (-2.5, 2.5) │          514 │
+    │ vikhr-nemo-12b-instruct-r-21-09-24       │  65.5 │ (-2.1, 2.9) │          627 │
+    │ qwen2.5-14b-instruct                     │  59.0 │ (-2.1, 2.0) │          434 │
+    │ gemma-2-9b-it-sppo-iter3                 │  56.9 │ (-2.7, 2.1) │          509 │
+    │ gigachat_pro_26.20_uncen                 │  55.4 │ (-1.8, 2.8) │          549 │
+    │ gemma-2-9b-it                            │  54.3 │ (-2.0, 2.4) │          459 │
     │ gpt-3.5-turbo-0125                       │  50.0 │  (0.0, 0.0) │          220 │
-    │ aya-expanse-8b                           │  47.2 │ (-2.5, 2.3) │          698 │
-    │ vikhr-llama3.1-8b-instruct-r-21-09-24    │  46.9 │ (-2.4, 2.2) │          618 │
-    │ phi-3-medium-4k-instruct                 │  45.0 │ (-2.4, 2.5) │          566 │
-    │ gpt-3.5-turbo-1106                       │  41.0 │ (-2.1, 2.5) │          191 │
-    │ mistral-nemo-instruct-2407               │  40.0 │ (-2.6, 2.2) │          403 │
-    │ suzume-llama-3-8b-multilingual           │  40.0 │ (-2.0, 1.9) │          641 │
-    │ t-lite-instruct-0.1                      │  39.9 │ (-2.2, 2.0) │          810 │
-    │ yandex_gpt_pro_v4_26102024               │  38.8 │ (-2.3, 2.2) │          384 │
-    │ glm-4-9b-chat                            │  36.2 │ (-1.9, 1.8) │          568 │
-    │ hermes-2-theta-llama-3-8b                │  34.1 │ (-1.7, 2.5) │          485 │
-    │ suzume-llama-3-8B-multilingual-orpo-bor… │  33.3 │ (-1.8, 2.4) │          682 │
-    │ yandex_gpt_lite_v4_26102024              │  33.2 │ (-2.0, 2.1) │          328 │
-    │ meta-llama-3.1-8b-instruct               │  33.0 │ (-2.0, 2.1) │          628 │
-    │ llama-3-smaug-8b                         │  32.5 │ (-2.1, 2.2) │          524 │
-    │ sfr-iterative-dpo-llama-3-8b-r           │  32.4 │ (-2.1, 2.2) │          516 │
-    │ llama-3-8b-saiga-suzume-ties             │  32.2 │ (-1.9, 1.7) │          763 │
-    │ c4ai-command-r-v01                       │  32.1 │ (-1.9, 1.5) │          529 │
-    │ qwen2-7b-instruct                        │  31.0 │ (-1.9, 2.2) │          340 │
-    │ llama-3-instruct-8b-sppo-iter3           │  30.7 │ (-2.1, 1.8) │          502 │
-    │ saiga_llama3_8b_v6                       │  30.4 │ (-1.7, 1.9) │          471 │
-    │ openchat-3.5-0106                        │  30.2 │ (-1.8, 1.8) │          492 │
-    │ starling-lm-7b-beta                      │  28.4 │ (-1.9, 1.4) │          629 │
-    │ mistral-7b-instruct-v0.3                 │  27.8 │ (-1.9, 1.8) │          469 │
-    │ meta-llama-3.1-8b-instruct-no-sys        │  27.7 │ (-1.9, 1.8) │          523 │
-    │ hermes-2-pro-llama-3-8b                  │  26.1 │ (-1.4, 1.6) │          463 │
-    │ llama-3-instruct-8b-simpo                │  25.2 │ (-2.0, 1.9) │          417 │
-    │ gigachat_pro                             │  24.7 │ (-1.8, 2.0) │          294 │
-    │ openchat-3.6-8b-20240522                 │  24.6 │ (-1.4, 1.8) │          428 │
-    │ meta-llama-3-8b-instruct                 │  23.8 │ (-1.9, 1.7) │          450 │
-    │ aya-23-8b                                │  23.6 │ (-1.5, 1.6) │          554 │
-    │ vikhr-it-5.2-fp16-cp                     │  23.0 │ (-1.5, 1.3) │          543 │
-    │ vikhr-it-5.3-fp16-32k                    │  21.3 │ (-1.9, 1.6) │          519 │
-    │ snorkel-mistral-pairrm-dpo               │  19.0 │ (-1.3, 1.5) │          773 │
-    │ vikhr-it-5.3-fp16                        │  18.2 │ (-1.4, 1.3) │          523 │
-    │ neural-chat-7b-v3-3                      │  16.8 │ (-1.6, 1.7) │          927 │
-    │ gigachat_lite                            │  15.2 │ (-1.5, 1.3) │          276 │
-    │ storm-7b                                 │  12.8 │ (-1.5, 1.4) │          419 │
+    │ CohereForAI/aya-expanse-8b               │  47.2 │ (-2.1, 2.1) │          698 │
+    │ vikhr-llama3.1-8b-instruct-r-21-09-24    │  46.9 │ (-2.7, 2.5) │          618 │
+    │ phi-3-medium-4k-instruct                 │  45.0 │ (-2.1, 2.0) │          566 │
+    │ gigachat_lite_26.20_uncen                │  41.4 │ (-2.6, 1.9) │          561 │
+    │ gpt-3.5-turbo-1106                       │  41.0 │ (-2.3, 2.0) │          191 │
+    │ mistral-nemo-instruct-2407               │  40.0 │ (-1.8, 2.5) │          403 │
+    │ suzume-llama-3-8b-multilingual           │  40.0 │ (-2.0, 2.1) │          641 │
+    │ t-lite-instruct-0.1                      │  39.9 │ (-2.5, 2.2) │          810 │
+    │ yandex_gpt_pro_v4_26102024               │  38.8 │ (-1.9, 2.4) │          384 │
+    │ vikhr-it-5.4-fp16-orpo-v2                │  36.8 │ (-2.0, 1.9) │          379 │
+    │ glm-4-9b-chat                            │  36.2 │ (-2.3, 2.1) │          568 │
+    │ yandex_gpt_pro                           │  35.3 │ (-2.0, 2.5) │          345 │
+    │ hermes-2-theta-llama-3-8b                │  34.1 │ (-1.7, 2.8) │          485 │
+    │ suzume-llama-3-8B-multilingual-orpo-bor… │  33.3 │ (-2.0, 2.3) │          682 │
+    │ yandex_gpt_lite_v4_26102024              │  33.2 │ (-2.1, 2.3) │          328 │
+    │ llama-3-smaug-8b                         │  32.5 │ (-1.8, 2.0) │          524 │
+    │ sfr-iterative-dpo-llama-3-8b-r           │  32.4 │ (-2.5, 2.0) │          516 │
+    │ llama-3-8b-saiga-suzume-ties             │  32.2 │ (-2.0, 1.9) │          763 │
+    │ c4ai-command-r-v01                       │  32.1 │ (-2.1, 2.3) │          529 │
+    │ qwen2-7b-instruct                        │  31.0 │ (-1.5, 1.7) │          340 │
+    │ llama-3-instruct-8b-sppo-iter3           │  30.7 │ (-1.7, 2.1) │          502 │
+    │ saiga_llama3_8b_v6                       │  30.4 │ (-1.7, 1.7) │          471 │
+    │ openchat-3.5-0106                        │  30.2 │ (-1.7, 1.9) │          492 │
+    │ starling-lm-7b-beta                      │  28.4 │ (-1.5, 1.8) │          629 │
+    │ paralex-llama-3-8b-sft                   │  27.8 │ (-1.8, 1.5) │          688 │
+    │ mistral-7b-instruct-v0.3                 │  27.8 │ (-1.8, 1.6) │          469 │
+    │ hermes-2-pro-llama-3-8b                  │  26.1 │ (-1.7, 2.1) │          463 │
+    │ llama-3-instruct-8b-simpo                │  25.2 │ (-1.6, 2.0) │          417 │
+    │ openchat-3.6-8b-20240522                 │  24.6 │ (-1.9, 2.1) │          428 │
+    │ meta-llama-3-8b-instruct                 │  23.8 │ (-1.9, 2.0) │          450 │
+    │ aya-23-8b                                │  23.6 │ (-1.5, 1.5) │          554 │
+    │ vikhr-it-5.2-fp16-cp                     │  23.0 │ (-1.5, 1.6) │          543 │
+    │ vikhr-it-5.3-fp16-32k                    │  21.3 │ (-1.5, 1.6) │          519 │
+    │ snorkel-mistral-pairrm-dpo               │  19.0 │ (-1.8, 1.3) │          773 │
+    │ vikhr-it-5.3-fp16                        │  18.2 │ (-1.1, 1.4) │          523 │
+    │ kolibri-vikhr-mistral-0427               │  17.8 │ (-1.4, 1.6) │          489 │
+    │ neural-chat-7b-v3-3                      │  16.8 │ (-1.5, 1.5) │          927 │
+    │ storm-7b                                 │  12.8 │ (-1.2, 1.3) │          419 │
     └──────────────────────────────────────────┴───────┴─────────────┴──────────────┘
 </details>
 

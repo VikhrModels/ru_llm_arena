@@ -97,11 +97,14 @@ def chat_completion_gigachat(model, messages, temperature, max_tokens, api_dict=
     from gigachat import GigaChat
     from gigachat.models import Chat, Messages
     assert api_dict is not None, "no api settings provided!"
-    client = GigaChat(credentials=api_dict["auth_token"], model=model, verify_ssl_certs=False)
-    temperature = max(temperature, 0.001)
+    client = GigaChat(model=model, verify_ssl_certs=False, **api_dict)
+    top_p = 1
+    if temperature == 0:
+        temperature = 1
+        top_p = 0
 
     messages = [Messages.parse_obj(m) for m in messages]
-    chat = Chat(messages=messages, max_tokens=max_tokens, temperature=temperature)
+    chat = Chat(messages=messages, max_tokens=max_tokens, temperature=temperature, top_p=top_p)
     
     output = API_ERROR_OUTPUT
     for _ in range(API_MAX_RETRY):
@@ -111,6 +114,7 @@ def chat_completion_gigachat(model, messages, temperature, max_tokens, api_dict=
             break
         # Don't know other errors
         except Exception as e:
+
             print(type(e), e)
             time.sleep(API_RETRY_SLEEP)
     
@@ -148,9 +152,11 @@ def chat_completion_yandex(model, messages, temperature, max_tokens, api_dict=No
 def chat_completion_openai(model, messages, temperature, max_tokens, num_beams=1, api_dict=None):
     import openai
     if api_dict:
+        import httpx
         client = openai.OpenAI(
             base_url=api_dict["api_base"],
             api_key=api_dict["api_key"],
+            http_client=httpx.Client(verify=False)
         )
     else:
         client = openai.OpenAI()
