@@ -336,6 +336,14 @@ meta-llama-3-8b-instruct-3beams:
     api_type: openai
     parallel: 6
 
+saiga_llama3_8b_v7_no_system:
+    model_name: IlyaGusev/saiga_llama3_8b
+    endpoints:
+        - api_base: http://localhost:8000/v1
+          api_key: token-abc123
+    api_type: openai
+    parallel: 6
+
 saiga_llama3_8b_v6:
     model_name: IlyaGusev/saiga_llama3_8b
     endpoints:
