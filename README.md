@@ -42,6 +42,7 @@
 │ gigachat_max_26.20_uncen                 │  82.7 │ (-1.8, 1.6) │          514 │
 │ vikhr-nemo-12b-instruct-r-21-09-24       │  79.8 │ (-1.6, 1.9) │          627 │
 │ gemma-2-9b-it-sppo-iter3                 │  73.6 │ (-1.8, 1.2) │          509 │
+│ T-Tech-T-lite-it-1.0                     │  71.0 │ (-1.8, 1.8) │          544 │
 │ qwen2.5-14b-instruct                     │  70.5 │ (-1.9, 1.8) │          434 │
 │ gigachat_pro_26.20_uncen                 │  70.4 │ (-1.5, 2.4) │          549 │
 │ gemma-2-9b-it                            │  69.2 │ (-2.0, 2.0) │          459 │
