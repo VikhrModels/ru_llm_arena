@@ -149,7 +149,7 @@ def chat_completion_yandex(model, messages, temperature, max_tokens, api_dict=No
     return output
 
 
-def chat_completion_openai(model, messages, temperature, max_tokens, num_beams=1, api_dict=None):
+def chat_completion_openai(model, messages, temperature, max_tokens, num_beams=1, repetition_penalty=1.1, api_dict=None):
     import openai
     if api_dict:
         import httpx
@@ -164,14 +164,13 @@ def chat_completion_openai(model, messages, temperature, max_tokens, num_beams=1
     output = API_ERROR_OUTPUT
     for _ in range(API_MAX_RETRY):
         try:
+            extra_body={
+                "repetition_penalty": repetition_penalty,
+            }
             if num_beams > 1: # for vllm
-                extra_body={
-                    'best_of': num_beams,
-                    'use_beam_search': num_beams > 1,
-                }
-            else:
-                extra_body = None
-            # print(messages)
+                extra_body["best_of"] = num_beams
+                extra_body["use_beam_search"] = num_beams > 1
+
             completion = client.chat.completions.create(
                 model=model,
                 messages=messages,
