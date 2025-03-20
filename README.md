@@ -159,7 +159,7 @@
 
 ### Шаг 0. Установка зависимостей
 ```
-git clone https://github.com/lm-sys/arena-hard.git
+git clone https://github.com/VikhrModels/ru_llm_arena.git
 cd arena-hard
 pip install -r requirements.txt
 pip install -r requirements-optional.txt  # Optional dependencies (e.g., anthropic sdk)
